@@ -56,4 +56,47 @@ if (isNaN(firstNumber) || isNaN(secondNumber)) {
   alert(`Сума чисел від ${min} до ${max} дорівнює ${sum}.`);
 }
 
+//Запитай у користувача 2 числа і знайди найбільший спільний дільник.
 
+function gcd(a, b) {
+  while (b !== 0) {
+    let temp = b;
+    b = a % b;
+    a = temp;
+  }
+  return a;
+}
+
+let inputA = prompt("Введіть перше число:");
+let inputB = prompt("Введіть друге число:");
+
+let a = parseInt(inputA);
+let b = parseInt(inputB);
+
+if (isNaN(a) || isNaN(b)) {
+  alert("Будь ласка, введіть коректні числові значення.");
+} else if (a === 0 && b === 0) {
+  alert("НСД не визначено для обох нульових значень.");
+} else {
+  let result = gcd(Math.abs(a), Math.abs(b));
+  alert(`Найбільший спільний дільник чисел ${a} і ${b} дорівнює ${result}.`);
+}
+
+//Запитай у користувача число і виведи всі дільники цього числа.
+
+let input = prompt("Введіть ціле додатне число:");
+let number = parseInt(input);
+
+if (isNaN(number) || number <= 0) {
+  alert("Будь ласка, введіть коректне додатне число.");
+} else {
+  let divisors = [];
+
+  for (let i = 1; i <= number; i++) {
+    if (number % i === 0) {
+      divisors.push(i);
+    }
+  }
+
+  alert(`Дільники числа ${number}: ${divisors.join(", ")}`);
+}
