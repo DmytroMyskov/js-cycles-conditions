@@ -100,3 +100,99 @@ if (isNaN(number) || number <= 0) {
 
   alert(`Дільники числа ${number}: ${divisors.join(", ")}`);
 }
+
+
+// Запитай у користувача п’ятирозрядне число і визначи, чи є воно паліндромом.
+let inputNum = prompt("Введіть п’ятирозрядне число:");
+
+if (inputNum.length !== 5) {
+  alert("Будь ласка, введіть п’ятирозрядне число.");
+} else {
+  let reversedNumber = inputNum.split("").reverse().join("");
+  if (inputNum === reversedNumber) {
+    alert("Це число є паліндромом.");
+  } else {
+    alert("Це число не є паліндромом.");
+  }
+}
+
+
+// Запитай у користувача суму покупки і виведи суму до оплати зі знижкою:
+// - з 200 до 300 - знижка 3%
+// - з 300 до 500 - знижка 5%
+// - з 500 і вище - знижка 7%
+let inputSum = prompt("Введіть суму покупки:");
+
+let sum = parseFloat(inputSum);
+
+if (sum >= 200 && sum <= 300) {
+  let discount = sum * 0.03;
+  let finalSum = sum - discount;
+  alert(`Сума до оплати зі знижкою: ${finalSum}`);
+} else if (sum > 300 && sum <= 500) {
+  let discount = sum * 0.05;
+  let finalSum = sum - discount;
+  alert(`Сума до оплати зі знижкою: ${finalSum}`);
+} else if (sum > 500) {
+  let discount = sum * 0.07;
+  let finalSum = sum - discount;
+  alert(`Сума до оплати зі знижкою: ${finalSum}`);
+}
+
+
+// Запитай у користувача 10 чисел і порахуй, скільки він ввів додатніх, від’ємних і нулів. При цьому також порахуй, скільки з них парних і непарних. Виведи статистику на екран. Враховуй, що достатньо однієї змінної (не 10) для введення чисел користувачем.
+
+let positiveCount = 0;
+let negativeCount = 0;
+let zeroCount = 0;
+let evenCount = 0;
+let oddCount = 0;
+
+for (let i = 1; i <= 10; i++) {
+  let input = prompt(`Введіть число ${i}:`);
+  let number = parseInt(input);
+
+  if (isNaN(number)) {
+    alert("Будь ласка, введіть коректне число.");
+  } else {
+    if (number > 0) {
+      positiveCount++;
+      if (number % 2 === 0) {
+        evenCount++;
+      } else {
+        oddCount++;
+      }
+    } else if (number < 0) {
+      negativeCount++;
+      if (number % 2 === 0) {
+        evenCount++;
+      } else {
+        oddCount++;
+      }
+    } else {
+      zeroCount++;
+    }
+  }
+}
+
+alert(`Кількість додатніх чисел: ${positiveCount}
+Кількість від’ємних чисел: ${negativeCount}
+Кількість нулів: ${zeroCount}
+Кількість парних чисел: ${evenCount}
+Кількість непарних чисел: ${oddCount}`);
+
+
+// Зацикли відображення днів тижня таким чином: «День тижня. Хочеш побачити наступний день? » і так до тих пір, поки користувач натискає OK.
+
+let daysOfWeek = ["Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота", "Неділя"];
+
+let currentIndex = 0;
+
+while (true) {
+  alert(`День тижня: ${daysOfWeek[currentIndex]}`);
+  let continuePrompt = prompt("Хочеш побачити наступний день? (так/ні)");
+  if (continuePrompt.toLowerCase() !== "так") {
+    break;
+  }
+  currentIndex = (currentIndex + 1) % daysOfWeek.length;
+}
